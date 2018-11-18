@@ -1,7 +1,9 @@
 package com.marchenkoteam.kotlinlearning.services
 
+import com.marchenkoteam.kotlinlearning.dto.LoginDto
 import com.marchenkoteam.kotlinlearning.dto.RegistrationDto
 import com.marchenkoteam.kotlinlearning.dto.TokenDto
+import com.marchenkoteam.kotlinlearning.exceptions.InvalidLoginOrPasswordException
 import com.marchenkoteam.kotlinlearning.exceptions.PasswordsNotMatchedException
 import com.marchenkoteam.kotlinlearning.models.User
 import com.marchenkoteam.kotlinlearning.repositories.UserRepository
@@ -32,6 +34,15 @@ class UserService {
 
     private fun save(user: User): TokenDto {
         userRepository.save(user)
+        return tokenService.getToken(user)
+    }
+
+    fun login(loginDto: LoginDto): TokenDto {
+        val user = userRepository.findByEmail(loginDto.email)
+                .orElseThrow { InvalidLoginOrPasswordException() }
+
+        if (!passwordEncoder.matches(loginDto.password, user.password)) throw InvalidLoginOrPasswordException()
+
         return tokenService.getToken(user)
     }
 }

@@ -1,3 +1,3 @@
 package com.marchenkoteam.kotlinlearning.exceptions
 
-class PasswordsNotMatchedException : RuntimeException("Passwords don't match.")
+class PasswordsNotMatchedException : BadRequestException("Passwords don't match.")
