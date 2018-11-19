@@ -10,7 +10,9 @@ class User(@Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long,
            var lastName: String,
            @Column(unique = true, nullable = false) var email: String,
            @Column(nullable = false) var password: String,
-           @Column(nullable = false) @Enumerated(EnumType.STRING) var role: Role) {
+           @Column(nullable = false) @Enumerated(EnumType.STRING) var role: Role,
+           @ManyToMany(mappedBy = "whoCompleted")
+           var completedTests: List<Test>? = null) {
 
     constructor(id: Long,
                 email: String,
