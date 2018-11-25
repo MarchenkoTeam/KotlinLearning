@@ -1,7 +1,9 @@
 package com.marchenkoteam.kotlinlearning.security.providers
 
+import com.marchenkoteam.kotlinlearning.models.User
 import com.marchenkoteam.kotlinlearning.security.auth.JwtAuthToken
 import com.marchenkoteam.kotlinlearning.security.details.UserDetailsImpl
+import com.marchenkoteam.kotlinlearning.security.role.Role
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.JwtException
 import io.jsonwebtoken.Jwts
@@ -32,9 +34,11 @@ class JwtAuthTokenProvider : AuthenticationProvider {
             throw AuthenticationServiceException("Invalid token.")
         }
 
-        val userDetails = UserDetailsImpl(body["sub"].toString().toLong(),
-                body["email"].toString(),
-                body["role"].toString())
+        val userDetails = UserDetailsImpl(User().apply {
+            id = body["sub"].toString().toLong()
+            email = body["email"].toString()
+            role = Role.valueOf(body["role"].toString())
+        })
 
         authToken.details = userDetails
         authToken.isAuthenticated = true

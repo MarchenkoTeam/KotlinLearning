@@ -1,6 +1,6 @@
 package com.marchenkoteam.kotlinlearning.controllers
 
-import com.marchenkoteam.kotlinlearning.dto.RegistrationDto
+import com.marchenkoteam.kotlinlearning.forms.RegistrationForm
 import com.marchenkoteam.kotlinlearning.services.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.PostMapping
@@ -10,11 +10,8 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/sign_up")
-class SignUpController {
-
-    @Autowired
-    private lateinit var userService: UserService
+class SignUpController @Autowired constructor(private val userService: UserService) {
 
     @PostMapping
-    fun signUp(@RequestBody registrationDto: RegistrationDto) = userService.save(registrationDto)
+    fun signUp(@RequestBody registrationForm: RegistrationForm) = userService.save(registrationForm)
 }

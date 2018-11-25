@@ -10,10 +10,8 @@ import org.springframework.stereotype.Service
 @Service
 class ThemeService @Autowired constructor(private val themeRepository: ThemeRepository) {
 
-    fun findAll(): List<ThemeDto> {
-        val themes = themeRepository.findAll()
-        return themes.map(::ThemeDto)
-    }
+    fun findAll() = themeRepository.findAll()
+            .map(::ThemeDto)
 
     fun findById(id: Long): ThemeDto {
         val theme = themeRepository.findById(id)
@@ -25,5 +23,5 @@ class ThemeService @Autowired constructor(private val themeRepository: ThemeRepo
         themeRepository.save(themeForm.getTheme())
     }
 
-    fun deleteById(id: Long): Unit = themeRepository.deleteById(id)
+    fun deleteById(id: Long) = themeRepository.deleteById(id)
 }
