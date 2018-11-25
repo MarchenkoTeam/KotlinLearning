@@ -2,7 +2,7 @@ package com.marchenkoteam.kotlinlearning.services
 
 import com.marchenkoteam.kotlinlearning.dto.ThemeDto
 import com.marchenkoteam.kotlinlearning.exceptions.BadRequestException
-import com.marchenkoteam.kotlinlearning.models.Theme
+import com.marchenkoteam.kotlinlearning.forms.ThemeForm
 import com.marchenkoteam.kotlinlearning.repositories.ThemeRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -21,8 +21,8 @@ class ThemeService @Autowired constructor(private val themeRepository: ThemeRepo
         return ThemeDto(theme)
     }
 
-    fun save(theme: Theme) {
-        themeRepository.save(theme)
+    fun save(themeForm: ThemeForm) {
+        themeRepository.save(themeForm.getTheme())
     }
 
     fun deleteById(id: Long): Unit = themeRepository.deleteById(id)
