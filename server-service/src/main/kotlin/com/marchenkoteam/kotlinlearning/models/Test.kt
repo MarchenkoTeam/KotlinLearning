@@ -15,5 +15,9 @@ data class Test(@Id
                 var description: String = "",
                 @Column(nullable = false)
                 var rank: Int = 1,
+                @Column(nullable = false)
+                var inputFilePath: String = "",
+                @Column(nullable = false)
+                val outputFilePath: String = "",
                 @ManyToMany(mappedBy = "completedTests")
                 var whoCompleted: Set<User> = HashSet())
