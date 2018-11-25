@@ -1,7 +1,7 @@
 package com.marchenkoteam.kotlinlearning.controllers
 
 import com.marchenkoteam.kotlinlearning.dto.ThemeDto
-import com.marchenkoteam.kotlinlearning.models.Theme
+import com.marchenkoteam.kotlinlearning.forms.ThemeForm
 import com.marchenkoteam.kotlinlearning.services.ThemeService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.access.prepost.PreAuthorize
@@ -17,8 +17,8 @@ class ThemeController @Autowired constructor(private val themeService: ThemeServ
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     fun saveTheme(@RequestHeader authToken: String,
-                  @RequestBody theme: Theme) {
-        themeService.save(theme)
+                  @RequestBody themeForm: ThemeForm) {
+        themeService.save(themeForm)
     }
 
     @GetMapping("/{id}")
@@ -27,8 +27,8 @@ class ThemeController @Autowired constructor(private val themeService: ThemeServ
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/{id}")
     fun updateTheme(@RequestHeader authToken: String,
-                    @RequestBody theme: Theme) {
-        themeService.save(theme)
+                    @RequestBody themeForm: ThemeForm) {
+        themeService.save(themeForm)
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
