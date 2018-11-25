@@ -18,6 +18,6 @@ data class Test(@Id
                 @Column(nullable = false)
                 var inputFilePath: String = "",
                 @Column(nullable = false)
-                val outputFilePath: String = "",
-                @ManyToMany(mappedBy = "completedTests")
-                var whoCompleted: Set<User> = HashSet())
+                var outputFilePath: String = "",
+                @OneToMany(mappedBy = "test")
+                var userTest: Set<UserTest> = HashSet())
