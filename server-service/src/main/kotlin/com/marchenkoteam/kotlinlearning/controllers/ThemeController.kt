@@ -1,5 +1,6 @@
 package com.marchenkoteam.kotlinlearning.controllers
 
+import com.marchenkoteam.kotlinlearning.dto.ThemeDto
 import com.marchenkoteam.kotlinlearning.models.Theme
 import com.marchenkoteam.kotlinlearning.services.ThemeService
 import org.springframework.beans.factory.annotation.Autowired
@@ -7,11 +8,11 @@ import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/theme")
+@RequestMapping("/themes")
 class ThemeController @Autowired constructor(private val themeService: ThemeService) {
 
     @GetMapping
-    fun getThemes(): List<Theme> = themeService.findAll()
+    fun getThemes(): List<ThemeDto> = themeService.findAll()
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
@@ -21,7 +22,7 @@ class ThemeController @Autowired constructor(private val themeService: ThemeServ
     }
 
     @GetMapping("/{id}")
-    fun getTheme(@PathVariable("id") id: Long): Theme = themeService.findById(id)
+    fun getTheme(@PathVariable("id") id: Long): ThemeDto = themeService.findById(id)
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/{id}")
