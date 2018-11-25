@@ -3,7 +3,7 @@ package com.marchenkoteam.kotlinlearning.models
 import javax.persistence.*
 
 @Entity
-data class UserThemeRank(@Id
+data class UserThemeInfo(@Id
                          @GeneratedValue(strategy = GenerationType.IDENTITY)
                          var id: Long = 0,
                          @ManyToOne
@@ -13,4 +13,6 @@ data class UserThemeRank(@Id
                          @JoinColumn(name = "theme_id", nullable = false)
                          var theme: Theme,
                          @Column(nullable = false)
-                         var rank: Int = 0)
+                         var rank: Int = 0,
+                         @Column(nullable = false)
+                         var code: String = "")
