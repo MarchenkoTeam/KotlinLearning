@@ -5,11 +5,24 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "app_user")
-class User(@Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long = 0,
+data class User(@Id
+           @GeneratedValue(strategy = GenerationType.IDENTITY)
+           var id: Long = 0,
            var firstName: String = "",
            var lastName: String = "",
-           @Column(unique = true, nullable = false) var email: String = "",
-           @Column(nullable = false) var password: String = "",
-           @Column(nullable = false) @Enumerated(EnumType.STRING) var role: Role = Role.USER,
-           @ManyToMany(mappedBy = "whoCompleted")
-           var completedTests: List<Test>? = null)
+           @Column(unique = true, nullable = false)
+           var email: String = "",
+           @Column(nullable = false)
+           var password: String = "",
+           @Column(nullable = false) @Enumerated(EnumType.STRING)
+           var role: Role = Role.USER,
+           @ManyToMany(cascade = [CascadeType.ALL])
+           @JoinTable(
+                   name = "completed_tests",
+                   joinColumns = [JoinColumn(name = "user_id")],
+                   inverseJoinColumns = [JoinColumn(name = "test_id")]
+           )
+           var completedTests: Set<Test> = HashSet()) {
+}
+
+
