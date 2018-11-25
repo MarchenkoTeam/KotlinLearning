@@ -17,7 +17,6 @@ class JwtAuthTokenProvider : AuthenticationProvider {
     @Value("\${app.jwtSecret}")
     private lateinit var jwtSecret: String
 
-
     override fun authenticate(authentication: Authentication): Authentication {
         val authToken = authentication as JwtAuthToken
         val body: Claims
@@ -43,6 +42,6 @@ class JwtAuthTokenProvider : AuthenticationProvider {
     }
 
     override fun supports(auth: Class<*>): Boolean {
-        return JwtAuthToken::class == auth
+        return JwtAuthToken::class.java == auth
     }
 }
