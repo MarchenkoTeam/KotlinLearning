@@ -17,7 +17,7 @@ class UserDetailsImpl(val user: User) : UserDetails {
 
     constructor(id: Long,
                 email: String,
-                role: String) : this(User(id, email, Role.valueOf(role)))
+                role: String) : this(User(id, email = email, role = Role.valueOf(role)))
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         return Collections.singletonList(grantedAuthority)

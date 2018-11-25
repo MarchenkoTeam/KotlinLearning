@@ -25,10 +25,10 @@ class UserService {
 
     fun save(registrationDto: RegistrationDto): TokenDto {
         if (registrationDto.password != registrationDto.passwordConfirm) throw PasswordsNotMatchedException()
-        val user = User(registrationDto.firstName,
-                registrationDto.lastName,
-                registrationDto.email,
-                passwordEncoder.encode(registrationDto.password))
+        val user = User(firstName = registrationDto.firstName,
+                lastName = registrationDto.lastName,
+                email = registrationDto.email,
+                password = passwordEncoder.encode(registrationDto.password))
         return save(user)
     }
 
