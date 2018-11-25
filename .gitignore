@@ -1,5 +1,36 @@
-# Created by https://www.gitignore.io/api/node,maven,kotlin,nuxtjs,jetbrains+all
-# Edit at https://www.gitignore.io/?templates=node,maven,kotlin,nuxtjs,jetbrains+all
+# Created by https://www.gitignore.io/api/node,maven,kotlin,angular,jetbrains+all
+# Edit at https://www.gitignore.io/?templates=node,maven,kotlin,angular,jetbrains+all
+
+### Angular ###
+## Angular ##
+# compiled output
+/dist
+/tmp
+/app/**/*.js
+/app/**/*.js.map
+
+# dependencies
+/node_modules
+/bower_components
+
+# IDEs and editors
+/.idea
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+#System Files
+.DS_Store
 
 ### JetBrains+all ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
@@ -196,16 +227,4 @@ typings/
 # FuseBox cache
 .fusebox/
 
-### Nuxtjs ###
-# dependencies
-node_modules
-
-# logs
-npm-debug.log
-
-# Nuxt build
-
-# Nuxt generate
-dist
-
-# End of https://www.gitignore.io/api/node,maven,kotlin,nuxtjs,jetbrains+all
+# End of https://www.gitignore.io/api/node,maven,kotlin,angular,jetbrains+all
