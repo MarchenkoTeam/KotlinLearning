@@ -12,7 +12,8 @@ data class Test(@Id
                 @Column(name = "time_limit")
                 var timeLimit: Long = 0,
                 var name: String = "",
-                var content: String = "",
+                var description: String = "",
+                @Column(nullable = false)
                 var rank: Int = 1,
                 @ManyToMany(mappedBy = "completedTests")
                 var whoCompleted: Set<User> = HashSet())
